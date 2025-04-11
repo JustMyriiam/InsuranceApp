@@ -1,0 +1,20 @@
+{
+  "annotations": {
+    "changelogDate": "20250411083211"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "reason",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "blacklistDate",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "BlacklistedCar",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "changelogDate": "20250411083611"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "documentId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documentName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "issueDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "expiryDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "associatedSinister",
+      "fieldType": "String"
+    }
+  ],
+  "name": "DocumentSinister",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "accidentHistory",
+      "relationshipName": "accidentHistory",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

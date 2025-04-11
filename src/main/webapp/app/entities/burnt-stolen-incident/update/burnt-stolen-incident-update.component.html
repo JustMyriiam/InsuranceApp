@@ -1,0 +1,109 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-burnt-stolen-incident-heading" data-cy="BurntStolenIncidentCreateUpdateHeading">
+        Create or edit a Burnt Stolen Incident
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_incidentId">Incident Id</label>
+          <input
+            type="text"
+            class="form-control"
+            name="incidentId"
+            id="field_incidentId"
+            data-cy="incidentId"
+            formControlName="incidentId"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_incidentDate">Incident Date</label>
+          <div class="d-flex">
+            <input
+              id="field_incidentDate"
+              data-cy="incidentDate"
+              type="datetime-local"
+              class="form-control"
+              name="incidentDate"
+              formControlName="incidentDate"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_type">Type</label>
+          <input type="text" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_estimatedLoss">Estimated Loss</label>
+          <input
+            type="number"
+            class="form-control"
+            name="estimatedLoss"
+            id="field_estimatedLoss"
+            data-cy="estimatedLoss"
+            formControlName="estimatedLoss"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contract">Contract</label>
+          <select
+            class="form-control"
+            id="field_contract"
+            data-cy="contract"
+            name="contract"
+            formControlName="contract"
+            [compareWith]="compareContract"
+          >
+            <option [ngValue]="null"></option>
+            @for (contractOption of contractsSharedCollection; track $index) {
+              <option [ngValue]="contractOption">{{ contractOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

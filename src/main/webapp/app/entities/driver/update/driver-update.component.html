@@ -1,0 +1,133 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-driver-heading" data-cy="DriverCreateUpdateHeading">Create or edit a Driver</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fullName">Full Name</label>
+          <input type="text" class="form-control" name="fullName" id="field_fullName" data-cy="fullName" formControlName="fullName" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateOfBirth">Date Of Birth</label>
+          <input
+            type="text"
+            class="form-control"
+            name="dateOfBirth"
+            id="field_dateOfBirth"
+            data-cy="dateOfBirth"
+            formControlName="dateOfBirth"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_licenseNumber">License Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="licenseNumber"
+            id="field_licenseNumber"
+            data-cy="licenseNumber"
+            formControlName="licenseNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_licenseCategory">License Category</label>
+          <input
+            type="text"
+            class="form-control"
+            name="licenseCategory"
+            id="field_licenseCategory"
+            data-cy="licenseCategory"
+            formControlName="licenseCategory"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_address">Address</label>
+          <input type="text" class="form-control" name="address" id="field_address" data-cy="address" formControlName="address" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_phoneNumber">Phone Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="phoneNumber"
+            id="field_phoneNumber"
+            data-cy="phoneNumber"
+            formControlName="phoneNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_yearsOfExperience">Years Of Experience</label>
+          <input
+            type="number"
+            class="form-control"
+            name="yearsOfExperience"
+            id="field_yearsOfExperience"
+            data-cy="yearsOfExperience"
+            formControlName="yearsOfExperience"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_accidentHistory">Accident History</label>
+          <input
+            type="text"
+            class="form-control"
+            name="accidentHistory"
+            id="field_accidentHistory"
+            data-cy="accidentHistory"
+            formControlName="accidentHistory"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contract">Contract</label>
+          <select
+            class="form-control"
+            id="field_contract"
+            data-cy="contract"
+            name="contract"
+            formControlName="contract"
+            [compareWith]="compareContract"
+          >
+            <option [ngValue]="null"></option>
+            @for (contractOption of contractsSharedCollection; track $index) {
+              <option [ngValue]="contractOption">{{ contractOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

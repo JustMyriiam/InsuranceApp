@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20250411082711"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "region",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "theftRisk",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "accidentRisk",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "weatherRisk",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "LocationRisk",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "car",
+      "relationshipName": "cars",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

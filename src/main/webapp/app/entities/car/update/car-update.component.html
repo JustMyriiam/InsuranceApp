@@ -1,0 +1,187 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-car-heading" data-cy="CarCreateUpdateHeading">Create or edit a Car</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_brand">Brand</label>
+          <input type="text" class="form-control" name="brand" id="field_brand" data-cy="brand" formControlName="brand" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_model">Model</label>
+          <input type="text" class="form-control" name="model" id="field_model" data-cy="model" formControlName="model" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_year">Year</label>
+          <input type="text" class="form-control" name="year" id="field_year" data-cy="year" formControlName="year" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_registrationNumber">Registration Number</label>
+          <input
+            type="text"
+            class="form-control"
+            name="registrationNumber"
+            id="field_registrationNumber"
+            data-cy="registrationNumber"
+            formControlName="registrationNumber"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fuelType">Fuel Type</label>
+          <input type="text" class="form-control" name="fuelType" id="field_fuelType" data-cy="fuelType" formControlName="fuelType" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_transmission">Transmission</label>
+          <input
+            type="text"
+            class="form-control"
+            name="transmission"
+            id="field_transmission"
+            data-cy="transmission"
+            formControlName="transmission"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_engineSize">Engine Size</label>
+          <input
+            type="number"
+            class="form-control"
+            name="engineSize"
+            id="field_engineSize"
+            data-cy="engineSize"
+            formControlName="engineSize"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_color">Color</label>
+          <input type="text" class="form-control" name="color" id="field_color" data-cy="color" formControlName="color" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_mileage">Mileage</label>
+          <input type="number" class="form-control" name="mileage" id="field_mileage" data-cy="mileage" formControlName="mileage" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_insuranceStatus">Insurance Status</label>
+          <input
+            type="text"
+            class="form-control"
+            name="insuranceStatus"
+            id="field_insuranceStatus"
+            data-cy="insuranceStatus"
+            formControlName="insuranceStatus"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_carType">Car Type</label>
+          <input type="text" class="form-control" name="carType" id="field_carType" data-cy="carType" formControlName="carType" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_isBlacklisted">Is Blacklisted</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="isBlacklisted"
+            id="field_isBlacklisted"
+            data-cy="isBlacklisted"
+            formControlName="isBlacklisted"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_priceWhenBought">Price When Bought</label>
+          <input
+            type="number"
+            class="form-control"
+            name="priceWhenBought"
+            id="field_priceWhenBought"
+            data-cy="priceWhenBought"
+            formControlName="priceWhenBought"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_currentPrice">Current Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="currentPrice"
+            id="field_currentPrice"
+            data-cy="currentPrice"
+            formControlName="currentPrice"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contract">Contract</label>
+          <select
+            class="form-control"
+            id="field_contract"
+            data-cy="contract"
+            name="contract"
+            formControlName="contract"
+            [compareWith]="compareContract"
+          >
+            <option [ngValue]="null"></option>
+            @for (contractOption of contractsSharedCollection; track $index) {
+              <option [ngValue]="contractOption">{{ contractOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_locationRisk">Location Risk</label>
+          <select
+            class="form-control"
+            id="field_locationRisk"
+            data-cy="locationRisk"
+            name="locationRisk"
+            formControlName="locationRisk"
+            [compareWith]="compareLocationRisk"
+          >
+            <option [ngValue]="null"></option>
+            @for (locationRiskOption of locationRisksSharedCollection; track $index) {
+              <option [ngValue]="locationRiskOption">{{ locationRiskOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

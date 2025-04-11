@@ -1,0 +1,87 @@
+{
+  "annotations": {
+    "changelogDate": "20250411082411"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "brand",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "model",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "year",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "registrationNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fuelType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "transmission",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "engineSize",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "color",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "mileage",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "insuranceStatus",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "carType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isBlacklisted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "priceWhenBought",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "currentPrice",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "Car",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "vehicleUsage",
+      "relationshipName": "vehicleUsage",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "vehicleAccessory",
+      "relationshipName": "vehicleAccessory",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "blacklistedCar",
+      "relationshipName": "blacklistedCar",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

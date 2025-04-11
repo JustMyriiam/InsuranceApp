@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20250411083011"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "offerId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "offerName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "coverageDetails",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "termsAndConditions",
+      "fieldType": "String"
+    }
+  ],
+  "name": "InsuranceOffer",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

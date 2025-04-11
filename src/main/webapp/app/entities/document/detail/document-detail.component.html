@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (document(); as documentRef) {
+      <div>
+        <h2 data-cy="documentDetailsHeading"><span>Document</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ documentRef.id }}</span>
+          </dd>
+          <dt><span>Document Name</span></dt>
+          <dd>
+            <span>{{ documentRef.documentName }}</span>
+          </dd>
+          <dt><span>Document Type</span></dt>
+          <dd>
+            <span>{{
+              { null: '', REGISTRATION: 'REGISTRATION', INSURANCE: 'INSURANCE', LICENSE: 'LICENSE', CIN: 'CIN' }[
+                documentRef.documentType ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span>Issue Date</span></dt>
+          <dd>
+            <span>{{ documentRef.issueDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Expiry Date</span></dt>
+          <dd>
+            <span>{{ documentRef.expiryDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Owner</span></dt>
+          <dd>
+            <span>{{ documentRef.owner }}</span>
+          </dd>
+          <dt><span>Contract</span></dt>
+          <dd>
+            @if (document()!.contract) {
+              <div>
+                <a [routerLink]="['/contract', document()!.contract?.id, 'view']">{{ documentRef.contract?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/document', documentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

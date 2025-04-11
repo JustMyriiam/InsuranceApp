@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20250411083411"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "parkingId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "location",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "isSecured",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "capacity",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Parking",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

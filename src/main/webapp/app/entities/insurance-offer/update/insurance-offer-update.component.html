@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-insurance-offer-heading" data-cy="InsuranceOfferCreateUpdateHeading">Create or edit a Insurance Offer</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_offerId">Offer Id</label>
+          <input type="text" class="form-control" name="offerId" id="field_offerId" data-cy="offerId" formControlName="offerId" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_offerName">Offer Name</label>
+          <input type="text" class="form-control" name="offerName" id="field_offerName" data-cy="offerName" formControlName="offerName" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_price">Price</label>
+          <input type="number" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_coverageDetails">Coverage Details</label>
+          <input
+            type="text"
+            class="form-control"
+            name="coverageDetails"
+            id="field_coverageDetails"
+            data-cy="coverageDetails"
+            formControlName="coverageDetails"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_termsAndConditions">Terms And Conditions</label>
+          <input
+            type="text"
+            class="form-control"
+            name="termsAndConditions"
+            id="field_termsAndConditions"
+            data-cy="termsAndConditions"
+            formControlName="termsAndConditions"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_contract">Contract</label>
+          <select
+            class="form-control"
+            id="field_contract"
+            data-cy="contract"
+            name="contract"
+            formControlName="contract"
+            [compareWith]="compareContract"
+          >
+            <option [ngValue]="null"></option>
+            @for (contractOption of contractsSharedCollection; track $index) {
+              <option [ngValue]="contractOption">{{ contractOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

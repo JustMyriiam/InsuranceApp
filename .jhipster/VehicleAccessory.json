@@ -1,0 +1,28 @@
+{
+  "annotations": {
+    "changelogDate": "20250411083311"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "accessoryId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "factoryInstalled",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "VehicleAccessory",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

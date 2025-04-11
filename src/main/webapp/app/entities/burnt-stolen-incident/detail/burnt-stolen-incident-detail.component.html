@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (burntStolenIncident(); as burntStolenIncidentRef) {
+      <div>
+        <h2 data-cy="burntStolenIncidentDetailsHeading"><span>Burnt Stolen Incident</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ burntStolenIncidentRef.id }}</span>
+          </dd>
+          <dt><span>Incident Id</span></dt>
+          <dd>
+            <span>{{ burntStolenIncidentRef.incidentId }}</span>
+          </dd>
+          <dt><span>Incident Date</span></dt>
+          <dd>
+            <span>{{ burntStolenIncidentRef.incidentDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Type</span></dt>
+          <dd>
+            <span>{{ burntStolenIncidentRef.type }}</span>
+          </dd>
+          <dt><span>Description</span></dt>
+          <dd>
+            <span>{{ burntStolenIncidentRef.description }}</span>
+          </dd>
+          <dt><span>Estimated Loss</span></dt>
+          <dd>
+            <span>{{ burntStolenIncidentRef.estimatedLoss }}</span>
+          </dd>
+          <dt><span>Contract</span></dt>
+          <dd>
+            @if (burntStolenIncident()!.contract) {
+              <div>
+                <a [routerLink]="['/contract', burntStolenIncident()!.contract?.id, 'view']">{{ burntStolenIncidentRef.contract?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/burnt-stolen-incident', burntStolenIncidentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

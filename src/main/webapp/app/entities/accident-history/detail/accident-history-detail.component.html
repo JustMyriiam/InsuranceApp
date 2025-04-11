@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (accidentHistory(); as accidentHistoryRef) {
+      <div>
+        <h2 data-cy="accidentHistoryDetailsHeading"><span>Accident History</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ accidentHistoryRef.id }}</span>
+          </dd>
+          <dt><span>Accident Id</span></dt>
+          <dd>
+            <span>{{ accidentHistoryRef.accidentId }}</span>
+          </dd>
+          <dt><span>Accident Date</span></dt>
+          <dd>
+            <span>{{ accidentHistoryRef.accidentDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Severity</span></dt>
+          <dd>
+            <span>{{ accidentHistoryRef.severity }}</span>
+          </dd>
+          <dt><span>Description</span></dt>
+          <dd>
+            <span>{{ accidentHistoryRef.description }}</span>
+          </dd>
+          <dt><span>Repair Cost</span></dt>
+          <dd>
+            <span>{{ accidentHistoryRef.repairCost }}</span>
+          </dd>
+          <dt><span>Contract</span></dt>
+          <dd>
+            @if (accidentHistory()!.contract) {
+              <div>
+                <a [routerLink]="['/contract', accidentHistory()!.contract?.id, 'view']">{{ accidentHistoryRef.contract?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Document Sinister</span></dt>
+          <dd>
+            @if (accidentHistory()!.documentSinister) {
+              <div>
+                <a [routerLink]="['/document-sinister', accidentHistory()!.documentSinister?.id, 'view']">{{
+                  accidentHistoryRef.documentSinister?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/accident-history', accidentHistoryRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

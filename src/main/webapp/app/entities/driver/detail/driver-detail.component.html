@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (driver(); as driverRef) {
+      <div>
+        <h2 data-cy="driverDetailsHeading"><span>Driver</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ driverRef.id }}</span>
+          </dd>
+          <dt><span>Full Name</span></dt>
+          <dd>
+            <span>{{ driverRef.fullName }}</span>
+          </dd>
+          <dt><span>Date Of Birth</span></dt>
+          <dd>
+            <span>{{ driverRef.dateOfBirth }}</span>
+          </dd>
+          <dt><span>License Number</span></dt>
+          <dd>
+            <span>{{ driverRef.licenseNumber }}</span>
+          </dd>
+          <dt><span>License Category</span></dt>
+          <dd>
+            <span>{{ driverRef.licenseCategory }}</span>
+          </dd>
+          <dt><span>Address</span></dt>
+          <dd>
+            <span>{{ driverRef.address }}</span>
+          </dd>
+          <dt><span>Phone Number</span></dt>
+          <dd>
+            <span>{{ driverRef.phoneNumber }}</span>
+          </dd>
+          <dt><span>Years Of Experience</span></dt>
+          <dd>
+            <span>{{ driverRef.yearsOfExperience }}</span>
+          </dd>
+          <dt><span>Accident History</span></dt>
+          <dd>
+            <span>{{ driverRef.accidentHistory }}</span>
+          </dd>
+          <dt><span>Contract</span></dt>
+          <dd>
+            @if (driver()!.contract) {
+              <div>
+                <a [routerLink]="['/contract', driver()!.contract?.id, 'view']">{{ driverRef.contract?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/driver', driverRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

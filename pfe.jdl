@@ -1,0 +1,171 @@
+application {
+  config {
+    applicationType monolith
+    baseName InsuranceApp
+    packageName com.insurance.app
+    authenticationType oauth2
+    prodDatabaseType postgresql
+    devDatabaseType postgresql
+    serviceDiscoveryType false
+    buildTool maven
+    clientFramework angular
+    clientTheme none
+    enableTranslation false
+    nativeLanguage en
+    languages [en]
+    testFrameworks []
+  }
+  entities *
+}
+
+enum DocumentType {
+  REGISTRATION,
+  INSURANCE,
+  LICENSE,
+  CIN
+}
+
+entity Contract {
+  contractId String
+  startDate Instant
+  endDate Instant
+  premiumAmount Double
+  coverageDetails String
+  status String
+  renouvelable Boolean
+}
+
+entity Car {
+  brand String
+  model String
+  year String
+  registrationNumber String
+  fuelType String
+  transmission String
+  engineSize Double
+  color String
+  mileage Integer
+  insuranceStatus String
+  carType String
+  isBlacklisted Boolean
+  priceWhenBought Double
+  currentPrice Double
+}
+
+entity Driver {
+  fullName String
+  dateOfBirth String
+  licenseNumber String
+  licenseCategory String
+  address String
+  phoneNumber String
+  yearsOfExperience Integer
+  accidentHistory String
+}
+
+entity TrafficViolation {
+  violationType String
+  violationDate Instant
+  penaltyPoints Double
+}
+
+entity LocationRisk {
+  region String
+  theftRisk Double
+  accidentRisk Double
+  weatherRisk Double
+}
+
+entity VehicleUsage {
+  usageType String
+  annualMileage Integer
+  commercialUse Boolean
+}
+
+entity Document {
+  documentName String
+  documentType DocumentType
+  issueDate Instant
+  expiryDate Instant
+  owner String
+}
+
+entity InsuranceOffer {
+  offerId String
+  offerName String
+  price Double
+  coverageDetails String
+  termsAndConditions String
+}
+
+entity AccidentHistory {
+  accidentId String
+  accidentDate Instant
+  severity String
+  description String
+  repairCost Double
+}
+
+entity BlacklistedCar {
+  reason String
+  blacklistDate Instant
+}
+
+entity VehicleAccessory {
+  accessoryId String
+  name String
+  type String
+  factoryInstalled Boolean
+}
+
+entity Parking {
+  parkingId String
+  location String
+  isSecured Boolean
+  capacity Integer
+}
+
+entity BurntStolenIncident {
+  incidentId String
+  incidentDate Instant
+  type String
+  description String
+  estimatedLoss Double
+}
+
+entity DocumentSinister {
+  documentId String
+  documentName String
+  issueDate Instant
+  expiryDate Instant
+  associatedSinister String
+}
+
+entity Client {
+  clientId String
+  fullName String
+  dateOfBirth String
+  address String
+  phoneNumber String
+  email String
+  clientType String
+}
+
+relationship OneToMany {
+  Contract{car} to Car
+  Contract{driver} to Driver
+  Contract{insuranceOffer} to InsuranceOffer
+  Contract{document} to Document
+  Contract{accidentHistory} to AccidentHistory
+  Contract{parking} to Parking
+  Contract{burntStolenIncident} to BurntStolenIncident
+  Car{vehicleUsage} to VehicleUsage
+  Car{vehicleAccessory} to VehicleAccessory
+  Car{blacklistedCar} to BlacklistedCar
+  LocationRisk{cars} to Car
+  Driver{trafficViolation} to TrafficViolation
+  DocumentSinister{accidentHistory} to AccidentHistory
+  Client{contract} to Contract
+}
+
+paginate all with pagination

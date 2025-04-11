@@ -1,0 +1,171 @@
+<div>
+  <h2 id="page-heading" data-cy="AccidentHistoryHeading">
+    <span>Accident Histories</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span>Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-accident-history"
+        [routerLink]="['/accident-history/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Create a new Accident History</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (accidentHistories().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span>No Accident Histories found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span>ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="accidentId">
+              <div class="d-flex">
+                <span>Accident Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="accidentDate">
+              <div class="d-flex">
+                <span>Accident Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="severity">
+              <div class="d-flex">
+                <span>Severity</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="description">
+              <div class="d-flex">
+                <span>Description</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="repairCost">
+              <div class="d-flex">
+                <span>Repair Cost</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contract.id">
+              <div class="d-flex">
+                <span>Contract</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="documentSinister.id">
+              <div class="d-flex">
+                <span>Document Sinister</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (accidentHistory of accidentHistories(); track trackId(accidentHistory)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/accident-history', accidentHistory.id, 'view']">{{ accidentHistory.id }}</a>
+              </td>
+              <td>{{ accidentHistory.accidentId }}</td>
+              <td>{{ accidentHistory.accidentDate | formatMediumDatetime }}</td>
+              <td>{{ accidentHistory.severity }}</td>
+              <td>{{ accidentHistory.description }}</td>
+              <td>{{ accidentHistory.repairCost }}</td>
+              <td>
+                @if (accidentHistory.contract) {
+                  <div>
+                    <a [routerLink]="['/contract', accidentHistory.contract.id, 'view']">{{ accidentHistory.contract.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (accidentHistory.documentSinister) {
+                  <div>
+                    <a [routerLink]="['/document-sinister', accidentHistory.documentSinister.id, 'view']">{{
+                      accidentHistory.documentSinister.id
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/accident-history', accidentHistory.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline">View</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/accident-history', accidentHistory.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(accidentHistory)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (accidentHistories().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

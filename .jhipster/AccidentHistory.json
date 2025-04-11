@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20250411083111"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "accidentId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "accidentDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "severity",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "repairCost",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "AccidentHistory",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

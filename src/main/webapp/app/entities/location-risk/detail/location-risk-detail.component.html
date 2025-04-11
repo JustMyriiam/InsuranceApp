@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (locationRisk(); as locationRiskRef) {
+      <div>
+        <h2 data-cy="locationRiskDetailsHeading"><span>Location Risk</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ locationRiskRef.id }}</span>
+          </dd>
+          <dt><span>Region</span></dt>
+          <dd>
+            <span>{{ locationRiskRef.region }}</span>
+          </dd>
+          <dt><span>Theft Risk</span></dt>
+          <dd>
+            <span>{{ locationRiskRef.theftRisk }}</span>
+          </dd>
+          <dt><span>Accident Risk</span></dt>
+          <dd>
+            <span>{{ locationRiskRef.accidentRisk }}</span>
+          </dd>
+          <dt><span>Weather Risk</span></dt>
+          <dd>
+            <span>{{ locationRiskRef.weatherRisk }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/location-risk', locationRiskRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

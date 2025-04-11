@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (insuranceOffer(); as insuranceOfferRef) {
+      <div>
+        <h2 data-cy="insuranceOfferDetailsHeading"><span>Insurance Offer</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ insuranceOfferRef.id }}</span>
+          </dd>
+          <dt><span>Offer Id</span></dt>
+          <dd>
+            <span>{{ insuranceOfferRef.offerId }}</span>
+          </dd>
+          <dt><span>Offer Name</span></dt>
+          <dd>
+            <span>{{ insuranceOfferRef.offerName }}</span>
+          </dd>
+          <dt><span>Price</span></dt>
+          <dd>
+            <span>{{ insuranceOfferRef.price }}</span>
+          </dd>
+          <dt><span>Coverage Details</span></dt>
+          <dd>
+            <span>{{ insuranceOfferRef.coverageDetails }}</span>
+          </dd>
+          <dt><span>Terms And Conditions</span></dt>
+          <dd>
+            <span>{{ insuranceOfferRef.termsAndConditions }}</span>
+          </dd>
+          <dt><span>Contract</span></dt>
+          <dd>
+            @if (insuranceOffer()!.contract) {
+              <div>
+                <a [routerLink]="['/contract', insuranceOffer()!.contract?.id, 'view']">{{ insuranceOfferRef.contract?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/insurance-offer', insuranceOfferRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

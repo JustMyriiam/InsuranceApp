@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20250411082911"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "documentName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documentType",
+      "fieldType": "DocumentType",
+      "fieldValues": "REGISTRATION,INSURANCE,LICENSE,CIN"
+    },
+    {
+      "fieldName": "issueDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "expiryDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "owner",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Document",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

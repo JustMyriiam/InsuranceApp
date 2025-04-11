@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "oauth2",
+    "baseName": "InsuranceApp",
+    "buildTool": "maven",
+    "clientFramework": "angular",
+    "clientTheme": "none",
+    "devDatabaseType": "postgresql",
+    "enableTranslation": false,
+    "entities": [
+      "Contract",
+      "Car",
+      "Driver",
+      "TrafficViolation",
+      "LocationRisk",
+      "VehicleUsage",
+      "Document",
+      "InsuranceOffer",
+      "AccidentHistory",
+      "BlacklistedCar",
+      "VehicleAccessory",
+      "Parking",
+      "BurntStolenIncident",
+      "DocumentSinister",
+      "Client"
+    ],
+    "jhipsterVersion": "8.9.0",
+    "languages": ["en"],
+    "lastLiquibaseTimestamp": 1744360631000,
+    "nativeLanguage": "en",
+    "packageName": "com.insurance.app",
+    "prodDatabaseType": "postgresql",
+    "serviceDiscoveryType": false,
+    "skipUserManagement": true,
+    "testFrameworks": []
+  }
+}

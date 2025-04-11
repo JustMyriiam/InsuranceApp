@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (car(); as carRef) {
+      <div>
+        <h2 data-cy="carDetailsHeading"><span>Car</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ carRef.id }}</span>
+          </dd>
+          <dt><span>Brand</span></dt>
+          <dd>
+            <span>{{ carRef.brand }}</span>
+          </dd>
+          <dt><span>Model</span></dt>
+          <dd>
+            <span>{{ carRef.model }}</span>
+          </dd>
+          <dt><span>Year</span></dt>
+          <dd>
+            <span>{{ carRef.year }}</span>
+          </dd>
+          <dt><span>Registration Number</span></dt>
+          <dd>
+            <span>{{ carRef.registrationNumber }}</span>
+          </dd>
+          <dt><span>Fuel Type</span></dt>
+          <dd>
+            <span>{{ carRef.fuelType }}</span>
+          </dd>
+          <dt><span>Transmission</span></dt>
+          <dd>
+            <span>{{ carRef.transmission }}</span>
+          </dd>
+          <dt><span>Engine Size</span></dt>
+          <dd>
+            <span>{{ carRef.engineSize }}</span>
+          </dd>
+          <dt><span>Color</span></dt>
+          <dd>
+            <span>{{ carRef.color }}</span>
+          </dd>
+          <dt><span>Mileage</span></dt>
+          <dd>
+            <span>{{ carRef.mileage }}</span>
+          </dd>
+          <dt><span>Insurance Status</span></dt>
+          <dd>
+            <span>{{ carRef.insuranceStatus }}</span>
+          </dd>
+          <dt><span>Car Type</span></dt>
+          <dd>
+            <span>{{ carRef.carType }}</span>
+          </dd>
+          <dt><span>Is Blacklisted</span></dt>
+          <dd>
+            <span>{{ carRef.isBlacklisted }}</span>
+          </dd>
+          <dt><span>Price When Bought</span></dt>
+          <dd>
+            <span>{{ carRef.priceWhenBought }}</span>
+          </dd>
+          <dt><span>Current Price</span></dt>
+          <dd>
+            <span>{{ carRef.currentPrice }}</span>
+          </dd>
+          <dt><span>Contract</span></dt>
+          <dd>
+            @if (car()!.contract) {
+              <div>
+                <a [routerLink]="['/contract', car()!.contract?.id, 'view']">{{ carRef.contract?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span>Location Risk</span></dt>
+          <dd>
+            @if (car()!.locationRisk) {
+              <div>
+                <a [routerLink]="['/location-risk', car()!.locationRisk?.id, 'view']">{{ carRef.locationRisk?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/car', carRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,24 @@
+{
+  "annotations": {
+    "changelogDate": "20250411082611"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "violationType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "violationDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "penaltyPoints",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "TrafficViolation",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}

@@ -1,0 +1,51 @@
+{
+  "annotations": {
+    "changelogDate": "20250411082511"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "fullName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateOfBirth",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "licenseNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "licenseCategory",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phoneNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "yearsOfExperience",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "accidentHistory",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Driver",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "trafficViolation",
+      "relationshipName": "trafficViolation",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}

@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (parking(); as parkingRef) {
+      <div>
+        <h2 data-cy="parkingDetailsHeading"><span>Parking</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ parkingRef.id }}</span>
+          </dd>
+          <dt><span>Parking Id</span></dt>
+          <dd>
+            <span>{{ parkingRef.parkingId }}</span>
+          </dd>
+          <dt><span>Location</span></dt>
+          <dd>
+            <span>{{ parkingRef.location }}</span>
+          </dd>
+          <dt><span>Is Secured</span></dt>
+          <dd>
+            <span>{{ parkingRef.isSecured }}</span>
+          </dd>
+          <dt><span>Capacity</span></dt>
+          <dd>
+            <span>{{ parkingRef.capacity }}</span>
+          </dd>
+          <dt><span>Contract</span></dt>
+          <dd>
+            @if (parking()!.contract) {
+              <div>
+                <a [routerLink]="['/contract', parking()!.contract?.id, 'view']">{{ parkingRef.contract?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/parking', parkingRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

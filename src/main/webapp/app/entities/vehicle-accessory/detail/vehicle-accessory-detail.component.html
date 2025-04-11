@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (vehicleAccessory(); as vehicleAccessoryRef) {
+      <div>
+        <h2 data-cy="vehicleAccessoryDetailsHeading"><span>Vehicle Accessory</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ vehicleAccessoryRef.id }}</span>
+          </dd>
+          <dt><span>Accessory Id</span></dt>
+          <dd>
+            <span>{{ vehicleAccessoryRef.accessoryId }}</span>
+          </dd>
+          <dt><span>Name</span></dt>
+          <dd>
+            <span>{{ vehicleAccessoryRef.name }}</span>
+          </dd>
+          <dt><span>Type</span></dt>
+          <dd>
+            <span>{{ vehicleAccessoryRef.type }}</span>
+          </dd>
+          <dt><span>Factory Installed</span></dt>
+          <dd>
+            <span>{{ vehicleAccessoryRef.factoryInstalled }}</span>
+          </dd>
+          <dt><span>Car</span></dt>
+          <dd>
+            @if (vehicleAccessory()!.car) {
+              <div>
+                <a [routerLink]="['/car', vehicleAccessory()!.car?.id, 'view']">{{ vehicleAccessoryRef.car?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/vehicle-accessory', vehicleAccessoryRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

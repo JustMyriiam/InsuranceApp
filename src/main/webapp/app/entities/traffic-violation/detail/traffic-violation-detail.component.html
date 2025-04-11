@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (trafficViolation(); as trafficViolationRef) {
+      <div>
+        <h2 data-cy="trafficViolationDetailsHeading"><span>Traffic Violation</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ trafficViolationRef.id }}</span>
+          </dd>
+          <dt><span>Violation Type</span></dt>
+          <dd>
+            <span>{{ trafficViolationRef.violationType }}</span>
+          </dd>
+          <dt><span>Violation Date</span></dt>
+          <dd>
+            <span>{{ trafficViolationRef.violationDate | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span>Penalty Points</span></dt>
+          <dd>
+            <span>{{ trafficViolationRef.penaltyPoints }}</span>
+          </dd>
+          <dt><span>Driver</span></dt>
+          <dd>
+            @if (trafficViolation()!.driver) {
+              <div>
+                <a [routerLink]="['/driver', trafficViolation()!.driver?.id, 'view']">{{ trafficViolationRef.driver?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/traffic-violation', trafficViolationRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

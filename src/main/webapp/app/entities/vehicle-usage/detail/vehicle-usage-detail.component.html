@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (vehicleUsage(); as vehicleUsageRef) {
+      <div>
+        <h2 data-cy="vehicleUsageDetailsHeading"><span>Vehicle Usage</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span>ID</span></dt>
+          <dd>
+            <span>{{ vehicleUsageRef.id }}</span>
+          </dd>
+          <dt><span>Usage Type</span></dt>
+          <dd>
+            <span>{{ vehicleUsageRef.usageType }}</span>
+          </dd>
+          <dt><span>Annual Mileage</span></dt>
+          <dd>
+            <span>{{ vehicleUsageRef.annualMileage }}</span>
+          </dd>
+          <dt><span>Commercial Use</span></dt>
+          <dd>
+            <span>{{ vehicleUsageRef.commercialUse }}</span>
+          </dd>
+          <dt><span>Car</span></dt>
+          <dd>
+            @if (vehicleUsage()!.car) {
+              <div>
+                <a [routerLink]="['/car', vehicleUsage()!.car?.id, 'view']">{{ vehicleUsageRef.car?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/vehicle-usage', vehicleUsageRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

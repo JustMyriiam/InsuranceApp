@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-vehicle-usage-heading" data-cy="VehicleUsageCreateUpdateHeading">Create or edit a Vehicle Usage</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_usageType">Usage Type</label>
+          <input type="text" class="form-control" name="usageType" id="field_usageType" data-cy="usageType" formControlName="usageType" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_annualMileage">Annual Mileage</label>
+          <input
+            type="number"
+            class="form-control"
+            name="annualMileage"
+            id="field_annualMileage"
+            data-cy="annualMileage"
+            formControlName="annualMileage"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_commercialUse">Commercial Use</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="commercialUse"
+            id="field_commercialUse"
+            data-cy="commercialUse"
+            formControlName="commercialUse"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_car">Car</label>
+          <select class="form-control" id="field_car" data-cy="car" name="car" formControlName="car" [compareWith]="compareCar">
+            <option [ngValue]="null"></option>
+            @for (carOption of carsSharedCollection; track $index) {
+              <option [ngValue]="carOption">{{ carOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

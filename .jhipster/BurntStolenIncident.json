@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20250411083511"
+  },
+  "applications": ["InsuranceApp"],
+  "fields": [
+    {
+      "fieldName": "incidentId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "incidentDate",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estimatedLoss",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "BurntStolenIncident",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no"
+}
