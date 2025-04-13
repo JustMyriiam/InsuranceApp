@@ -1,0 +1,8 @@
+// Assuming your form has a class name 'form-container'
+.form-container {
+  border: 1px solid #ccc; // Finer border
+  border-radius: 8px; // Border radius
+  background: linear-gradient(to bottom, #f0f0f0, white); // Linear gradient from top to white
+  padding: 20px; // Optional: Add some padding inside the form
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional: Add a subtle shadow for depth
+}
